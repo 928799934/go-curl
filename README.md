@@ -4,7 +4,6 @@
 # usage
 
 ```go
-
 package curl
 
 import (
