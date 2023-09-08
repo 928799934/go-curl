@@ -2,8 +2,8 @@ package curl
 
 import "net/http"
 
-func Http1Post(options []string, header http.Header, body []byte, url string) ([]byte, error) {
-	options = append(options, "--request", "POST")
+func Http1Put(options []string, header http.Header, body []byte, url string) ([]byte, error) {
+	options = append(options, "--request", "PUT")
 	bCompressed := false
 	bHttp11 := false
 	for _, v := range options {
@@ -26,8 +26,8 @@ func Http1Post(options []string, header http.Header, body []byte, url string) ([
 	return Exec(options, header, body, url)
 }
 
-func Http1PostBinary(options []string, header http.Header, body []byte, url string) ([]byte, error) {
-	options = append(options, "--request", "POST")
+func Http1PutBinary(options []string, header http.Header, body []byte, url string) ([]byte, error) {
+	options = append(options, "--request", "PUT")
 	bCompressed := false
 	bHttp11 := false
 	for _, v := range options {
@@ -50,8 +50,8 @@ func Http1PostBinary(options []string, header http.Header, body []byte, url stri
 	return ExecBinary(options, header, body, url)
 }
 
-func Http2Post(options []string, header http.Header, body []byte, url string) ([]byte, error) {
-	options = append(options, "--request", "POST")
+func Http2Put(options []string, header http.Header, body []byte, url string) ([]byte, error) {
+	options = append(options, "--request", "PUT")
 	bCompressed := false
 	bHttp2 := false
 	bInsecure := false
@@ -84,8 +84,8 @@ func Http2Post(options []string, header http.Header, body []byte, url string) ([
 	return Exec(options, header, body, url)
 }
 
-func Http2PostBinary(options []string, header http.Header, body []byte, url string) ([]byte, error) {
-	options = append(options, "--request", "POST")
+func Http2PutBinary(options []string, header http.Header, body []byte, url string) ([]byte, error) {
+	options = append(options, "--request", "PUT")
 	bCompressed := false
 	bHttp2 := false
 	bInsecure := false
@@ -118,8 +118,8 @@ func Http2PostBinary(options []string, header http.Header, body []byte, url stri
 	return ExecBinary(options, header, body, url)
 }
 
-func Http1PostWithStream(options []string, header http.Header, body []byte, url string, fn func([]byte) error) error {
-	options = append(options, "--request", "POST")
+func Http1PutWithStream(options []string, header http.Header, body []byte, url string, fn func([]byte) error) error {
+	options = append(options, "--request", "PUT")
 	bCompressed := false
 	bHttp11 := false
 	for _, v := range options {
@@ -142,8 +142,8 @@ func Http1PostWithStream(options []string, header http.Header, body []byte, url 
 	return Stream(options, header, body, url, fn)
 }
 
-func Http1PostWithStreamBinary(options []string, header http.Header, body []byte, url string, fn func([]byte) error) error {
-	options = append(options, "--request", "POST")
+func Http1PutWithStreamBinary(options []string, header http.Header, body []byte, url string, fn func([]byte) error) error {
+	options = append(options, "--request", "PUT")
 	bCompressed := false
 	bHttp11 := false
 	for _, v := range options {
@@ -166,8 +166,8 @@ func Http1PostWithStreamBinary(options []string, header http.Header, body []byte
 	return StreamBinary(options, header, body, url, fn)
 }
 
-func Http2PostWithStream(options []string, header http.Header, body []byte, url string, fn func([]byte) error) error {
-	options = append(options, "--request", "POST")
+func Http2PutWithStream(options []string, header http.Header, body []byte, url string, fn func([]byte) error) error {
+	options = append(options, "--request", "PUT")
 	bCompressed := false
 	bHttp2 := false
 	bInsecure := false
@@ -200,8 +200,8 @@ func Http2PostWithStream(options []string, header http.Header, body []byte, url 
 	return Stream(options, header, body, url, fn)
 }
 
-func Http2PostWithStreamBinary(options []string, header http.Header, body []byte, url string, fn func([]byte) error) error {
-	options = append(options, "--request", "POST")
+func Http2PutWithStreamBinary(options []string, header http.Header, body []byte, url string, fn func([]byte) error) error {
+	options = append(options, "--request", "PUT")
 	bCompressed := false
 	bHttp2 := false
 	bInsecure := false

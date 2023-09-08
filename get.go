@@ -3,6 +3,7 @@ package curl
 import "net/http"
 
 func Http1Get(options []string, header http.Header, url string) ([]byte, error) {
+	options = append(options, "--request", "GET")
 	bCompressed := false
 	bHttp11 := false
 	for _, v := range options {
@@ -26,6 +27,8 @@ func Http1Get(options []string, header http.Header, url string) ([]byte, error) 
 }
 
 func Http2Get(options []string, header http.Header, url string) ([]byte, error) {
+	options = append(options, "--request", "GET")
+
 	bCompressed := false
 	bHttp2 := false
 	bInsecure := false
@@ -59,6 +62,7 @@ func Http2Get(options []string, header http.Header, url string) ([]byte, error) 
 }
 
 func Http1GetWithStream(options []string, header http.Header, url string, fn func([]byte) error) error {
+	options = append(options, "--request", "GET")
 	bCompressed := false
 	bHttp11 := false
 	for _, v := range options {
@@ -82,6 +86,7 @@ func Http1GetWithStream(options []string, header http.Header, url string, fn fun
 }
 
 func Http2GetWithStream(options []string, header http.Header, url string, fn func([]byte) error) error {
+	options = append(options, "--request", "GET")
 	bCompressed := false
 	bHttp2 := false
 	bInsecure := false
