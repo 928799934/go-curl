@@ -4,17 +4,13 @@ import (
 	"bufio"
 	"bytes"
 	"context"
-	"crypto/md5"
-	"encoding/hex"
 	"fmt"
 	"io"
 	"net/http"
-	"os"
 	"os/exec"
-	"path"
 )
 
-func ExecBinary(options []string, header http.Header, body []byte, url string) ([]byte, error) {
+func Exec(options []string, header http.Header, body []byte, url string) ([]byte, error) {
 	if safe {
 		if err := supportOptions(options); err != nil {
 			return nil, err
@@ -29,11 +25,7 @@ func ExecBinary(options []string, header http.Header, body []byte, url string) (
 	}
 
 	if body != nil {
-		md5Data := md5.Sum(body)
-		name := path.Join(os.TempDir(), hex.EncodeToString(md5Data[:]))
-		os.WriteFile(name, body, 0666)
-		defer os.Remove(name)
-		args = append(args, "--data-binary", "@"+name)
+		args = append(args, "--data", string(body))
 	}
 
 	args = append(args, url)
@@ -84,7 +76,7 @@ func ExecBinary(options []string, header http.Header, body []byte, url string) (
 	return buf.Bytes(), nil
 }
 
-func StreamBinary(options []string, header http.Header, body []byte, url string, fn func([]byte) error) error {
+func Stream(options []string, header http.Header, body []byte, url string, fn func([]byte) error) error {
 	if safe {
 		if err := supportOptions(options); err != nil {
 			return err
@@ -98,11 +90,7 @@ func StreamBinary(options []string, header http.Header, body []byte, url string,
 	}
 
 	if body != nil {
-		md5Data := md5.Sum(body)
-		name := path.Join(os.TempDir(), hex.EncodeToString(md5Data[:]))
-		os.WriteFile(name, body, 0666)
-		defer os.Remove(name)
-		args = append(args, "--data-binary", "@"+name)
+		args = append(args, "--data-binary", string(body))
 	}
 
 	args = append(args, url)

@@ -11,7 +11,7 @@ import (
 func supportOptions(options []string) error {
 	options = append(options, "--data")
 
-	cmd := exec.Command("curl", "--help", "all")
+	cmd := exec.Command(CURLEXEC, "--help", "all")
 	// 创建命令的标准输出管道
 	var b bytes.Buffer
 	cmd.Stdout = &b
